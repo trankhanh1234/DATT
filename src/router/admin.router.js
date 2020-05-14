@@ -13,7 +13,11 @@ let routerAdmin = (app) => {
   router.post("/product/create-product", product.createProduct);
   router.put("/product/edit-product/:idProduct", product.updateProduct);
   router.delete("/product/delete-product/:idProduct", product.deleteProduct);
-  router.post("/admin/create", admin.createAdmin);
+  router.get("/admin", admin.getDataAdmin);
+  router.get("/admin/:idAdmin", admin.getDataAdminById);
+  router.post("/admin/create-admin", admin.createAdmin);
+  router.put("/admin/update-admin/:idAdmin", admin.updateAdmin);
+  router.delete("/admin/delete-admin/:idAdmin", admin.deleteAdmin);
   app.use("/admin", router);
 };
 module.exports = routerAdmin;

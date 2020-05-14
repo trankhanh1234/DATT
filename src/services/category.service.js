@@ -15,8 +15,6 @@ let getCateById = (id) =>{
 let createCategory = (item) =>{
     return new Promise( async(resolve, reject)=>{
         let findCate = await categoryModel.getCateByTitle(item.title); 
-        console.log(findCate);
-        
         if(findCate){
             return reject("Đã tồn tại")
         }

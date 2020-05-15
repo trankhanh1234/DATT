@@ -11,32 +11,32 @@ let providerSchema = new mongoose.Schema({
   createdAt: { type: Number, default: Date.now },
   updatedAt: { type: Number, default: null },
 });
-adminSchema.statics = {
+providerSchema.statics = {
   /**
    * get Data Admin
    */
-  getDataAdmin() {
+  getDataProvider() {
     return this.find().sort({ createdAt: -1 }).exec();
   },
   /**
    * get Data Admin By Id
    * @param {String} id
    */
-  getDataAdminById(id) {
+  getDataProviderById(id) {
     return this.findById(id).exec();
   },
   /**
    * get Data Admin By username
    * @param {String} username
    */
-  getDataAdminByUsername(username) {
+  getDataProviderByUsername(username) {
     return this.findOne({ username: username }).exec();
   },
   /**
    * create data Admin
    * @param {Object} item
    */
-  createAdmin(item) {
+  createProvider(item) {
     return this.create(item);
   },
   /**
@@ -44,14 +44,14 @@ adminSchema.statics = {
    * @param {String} id
    * @param {Object} item
    */
-  updateAdmin(id, item) {
+  updateProvider(id, item) {
     return this.findByIdAndUpdate(id, item).exec();
   },
   /**
    *delete data Admin by id
    * @param {String} id
    */
-  deleteAdmin(id) {
+  deleteProvider(id) {
     return this.findByIdAndDelete(id).exec();
   },
 };

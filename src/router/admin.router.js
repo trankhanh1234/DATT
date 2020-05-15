@@ -1,5 +1,10 @@
 import express from "express";
-import { cate, product, admin } from "./../controller/index.controller";
+import {
+  cate,
+  product,
+  admin,
+  provider,
+} from "./../controller/index.controller";
 let router = express.Router();
 
 let routerAdmin = (app) => {
@@ -18,6 +23,14 @@ let routerAdmin = (app) => {
   router.post("/admin/create-admin", admin.createAdmin);
   router.put("/admin/update-admin/:idAdmin", admin.updateAdmin);
   router.delete("/admin/delete-admin/:idAdmin", admin.deleteAdmin);
+  router.get("/provider", provider.getDataProvider);
+  router.get("/provider/:idProvider", provider.getDataProviderById);
+  router.post("/provider/create-provider", provider.createProvider);
+  router.put("/provider/update-provider/:idProvider", provider.updateProvider);
+  router.delete(
+    "/provider/delete-provider/:idProvider",
+    provider.deleteProvider
+  );
   app.use("/admin", router);
 };
 module.exports = routerAdmin;

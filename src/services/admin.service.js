@@ -8,6 +8,7 @@ let getDataAdmin = () => {
     resolve(getDataAdmin);
   });
 };
+
 let getDataAdminById = (idAdmin) => {
   return new Promise(async (resolve, reject) => {
     let getDataAdmin = await adminModel.getDataAdminById(idAdmin);

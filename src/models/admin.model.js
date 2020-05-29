@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcryptjs from "bcryptjs";
 let adminSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -50,6 +51,11 @@ adminSchema.statics = {
    */
   deleteAdmin(id) {
     return this.findByIdAndDelete(id).exec();
+  },
+};
+adminSchema.methods = {
+  checkPassword(password) {
+    return bcryptjs.compareSync(password, this.password);
   },
 };
 module.exports = mongoose.model("admin", adminSchema);

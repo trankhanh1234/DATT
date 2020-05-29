@@ -5,6 +5,8 @@ import {
   admin,
   provider,
 } from "./../controller/index.controller";
+import auth from "./../controller/auth.controller";
+
 let router = express.Router();
 
 let routerAdmin = (app) => {
@@ -31,6 +33,6 @@ let routerAdmin = (app) => {
     "/provider/delete-provider/:idProvider",
     provider.deleteProvider
   );
-  app.use("/admin", router);
+  app.use("/admin", auth.checkToken, router);
 };
 module.exports = routerAdmin;

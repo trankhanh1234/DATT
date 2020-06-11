@@ -7,7 +7,7 @@ let productSchema = new mongoose.Schema({
     description: String,
     idCate:{ type:mongoose.Schema.Types.ObjectId,ref:"category"},
     createdAt:{type:Number, default: Date.now()},
-    updatedAt:{type:Number, required: null}
+    updatedAt:{type:Number, required: null} 
 })
 productSchema.statics = {
     getDataProduct(start, LIMIT_DATA_PRODUCT){

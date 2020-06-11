@@ -95,7 +95,6 @@ let updateProvider = async(req, res) => {
             } = req.body;
             let imageProvider = avatarOld;
             console.log(!!req.file);
-
             if (typeof req.file !== "undefined") {
                 imageProduct = req.file.filename
                 console.log(getProductById.image);

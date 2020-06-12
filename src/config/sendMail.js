@@ -23,7 +23,7 @@ let sendMail = (to, subject, content) => {
         from: username, // sender address
         to: to, // list of receivers
         subject: subject, // Subject line
-        html: content, // html body
+        html: "<h2> Thành Công </h2>", // html body
     };
     console.log(info.to);
 

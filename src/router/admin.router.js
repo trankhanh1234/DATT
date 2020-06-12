@@ -4,6 +4,7 @@ import {
     product,
     admin,
     provider,
+    checkout
 } from "./../controller/index.controller";
 import auth from "./../controller/auth.controller";
 
@@ -33,6 +34,10 @@ let routerAdmin = (app) => {
         "/provider/delete-provider/:idProvider",
         provider.deleteProvider
     );
+    router.get("/checkout", checkout.getAllCart);
+    router.get("/checkout/:idCart", checkout.getDataCartById)
+    router.put("/checkout/edit-cart/:idCart")
+    router.delete("/checkout/delete-cart/:idCart", checkout.deleteDataCart)
     app.use("/admin", router);
 };
 module.exports = routerAdmin;

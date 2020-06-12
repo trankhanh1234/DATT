@@ -36,13 +36,14 @@ let createProduct = (req, res) => {
             return res.status(500).send("Không đúng định dạng file");
         }
         try {
-            let { title, price, quality, description, idCate } = req.body;
+            let { title, price, salePrice, quality, description, idCate } = req.body;
             let item = {
                 title,
                 image: req.file.filename,
                 quality,
                 description,
                 price,
+                salePrice,
                 idCate,
             };
             let dataProduct = await product.createProduct(item);
@@ -65,9 +66,8 @@ let updateProduct = async(req, res) => {
             console.log(req.body);
 
             console.log(idProduct);
-            let { title, imageOld, price, quality, description, idCate } = req.body;
+            let { title, imageOld, price, salePrice, quality, description, idCate } = req.body;
             let imageProduct = imageOld;
-            console.log(!!req.file);
 
             if (typeof req.file !== "undefined") {
                 imageProduct = req.file.filename
@@ -75,7 +75,6 @@ let updateProduct = async(req, res) => {
 
                 await fs.remove(`${uploadFile.image_derectory}/${getProductById.image}`);
             }
-            console.log(imageProduct);
 
             let item = {
                 title,
@@ -83,9 +82,9 @@ let updateProduct = async(req, res) => {
                 quality,
                 description,
                 price,
+                salePrice,
                 idCate,
             };
-            console.log(item);
 
             let dataProduct = await product.updateProduct(idProduct, item);
             res.json({ result: true, dataProduct: dataProduct });

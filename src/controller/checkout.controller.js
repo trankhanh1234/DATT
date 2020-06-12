@@ -31,10 +31,33 @@ let addDataCart = async(req, res) => {
         res.json({ result: true, ssMgs: "Dat hang thanh cong" });
     } catch (error) {
         console.log(error);
-
         res.json({ result: false, ssMgs: "Dat hang that bai" });
     }
 }
+let getAllCart = async(req, res) => {
+    try {
+        let getAllCart = await checkout.getAllDataCart();
+        res.json({ result: true, data: getAllCart });
+    } catch (error) {
+        console.log(error);
+
+        res.json({ result: false, errMgs: "Error get all data cart" })
+    }
+
+}
+let getDataCartById = async(req, res) => {
+    let { idCart } = req.params;
+    let getDataCartById = await checkout.getDataCartById(idCart)
+    res.json({ result: true, data: getDataCartById });
+}
+let deleteDataCart = async(req, res) => {
+    let { idCart } = req.params;
+    let deleteDataCart = await checkout.deleteDataCart(idCart)
+    res.json({ result: true, data: deleteDataCart });
+}
 module.exports = {
-    addDataCart
+    getAllCart,
+    addDataCart,
+    getDataCartById,
+    deleteDataCart
 }

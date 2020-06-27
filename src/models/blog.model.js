@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-let productSchema = new mongoose.Schema({
+let blogSchema = new mongoose.Schema({
     title: String,
     image: String,
     description: String,
     createdAt: { type: Number, default: Date.now() },
     updatedAt: { type: Number, required: null }
 })
-productSchema.statics = {
+blogSchema.statics = {
     getAllDataBlog() {
         return this.find().sort({ createdAt: -1 }).exec();
     },
@@ -32,4 +32,4 @@ productSchema.statics = {
         return this.findByIdAndDelete(id).exec()
     }
 }
-module.exports = mongoose.model("product", productSchema);
+module.exports = mongoose.model("blog", blogSchema);

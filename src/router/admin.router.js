@@ -4,7 +4,8 @@ import {
     product,
     admin,
     provider,
-    checkout
+    checkout,
+    blog
 } from "./../controller/index.controller";
 import auth from "./../controller/auth.controller";
 
@@ -21,6 +22,11 @@ let routerAdmin = (app) => {
     router.post("/product/create-product", product.createProduct);
     router.put("/product/edit-product/:idProduct", product.updateProduct);
     router.delete("/product/delete-product/:idProduct", product.deleteProduct);
+    router.get("/blog", blog.getDataBlog);
+    router.get("/blog/:idBlog", blog.getBlogById);
+    router.post("/blog/create-blog", blog.createBlog);
+    router.put("/blog/edit-blog/:idBlog", blog.updateBlog);
+    router.delete("/blog/delete-blog/:idBlog", blog.deleteBlog);
     router.get("/admin", admin.getDataAdmin);
     router.get("/admin/:idAdmin", admin.getDataAdminById);
     router.post("/admin/create-admin", admin.createAdmin);

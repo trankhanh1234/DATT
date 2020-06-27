@@ -7,6 +7,7 @@ let checkoutSchema = new mongoose.Schema({
     listCart: [],
     totalQty: Number,
     totalPrice: Number,
+    status: { type: Number, default: 0 },
     createdAt: { type: Number, default: Date.now },
     updatedAt: { type: Number, default: null }
 

@@ -27,6 +27,8 @@ let addDataCart = async(req, res) => {
             totalQty: totalQty,
             totalPrice: totalPrice
         }
+        console.log(item);
+
         await checkout.addDataToCart(item)
         res.json({ result: true, ssMgs: "Dat hang thanh cong" });
     } catch (error) {

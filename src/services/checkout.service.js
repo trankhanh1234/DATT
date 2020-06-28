@@ -2,6 +2,23 @@ import checkoutModel from "./../models/checkout.model";
 import sendMail from "./../config/sendMail";
 import productModel from "./../models/product.model";
 
+import { transMail } from "./../../en/en.lang";
+import { Telegraf } from "telegraf"
+import moment from "moment"
+const bot = new Telegraf("1353477328:AAEFzfyEq4wNYDy2C8nUZG0y-NSh4lYCmRA");
+bot.start((ctx) => {
+    console.log(ctx);
+
+    ctx.reply('Welcome!')
+})
+bot.help((ctx) => ctx.reply('Send me a sticker'))
+bot.on('sticker', (ctx) => ctx.reply('👍'))
+bot.hears('hi', (ctx) => {
+    console.log(ctx.from.id);
+
+    ctx.reply('Hey there')
+})
+bot.launch()
 let addDataToCart = (item) => {
     return new Promise(async(resolve, rejcect) => {
         try {
@@ -24,8 +41,17 @@ let addDataToCart = (item) => {
                     }
                 }
             }
+            console.log(Date.now());
+            let formatDate = moment().locale("vi").format('LLLL')
 
-            sendMail(item.email, "DAT Hang thanh cong");
+            bot.telegram.sendMessage(810913292, `Một đơn hàng vừa được đặt vào lúc: ${formatDate} \nNgười đặt:${item.username}\nĐịa chỉ: ${item.address}\nSố điện thoại: ${item.phoneNumber}`).then(function(resp) {
+                console.log("Send success");
+
+            }).catch(function(error) {
+                console.log("Error: " + error);
+
+            });
+            sendMail(item.email, transMail.subject, transMail.templeate(item));
             resolve(true);
         } catch (error) {
             rejcect(error)

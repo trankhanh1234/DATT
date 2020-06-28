@@ -23,10 +23,8 @@ let sendMail = (to, subject, content) => {
         from: username, // sender address
         to: to, // list of receivers
         subject: subject, // Subject line
-        html: "<h2> Thành Công </h2>", // html body
+        html: content, // html body
     };
-    console.log(info.to);
-
     return transporter.sendMail(info);
 }
 module.exports = sendMail;

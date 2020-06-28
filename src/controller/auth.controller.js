@@ -9,10 +9,10 @@ let loginAmin = async(req, res) => {
         username
     );
     if (!getDataAdminByUsername)
-        return res.status(500).send("Tài khoản hoặc mật khẩu không đúng");
+        return res.json({ result: false, errMgs: "Tài khoản hoặc mật khẩu không đúng" });
     let checkPassword = await getDataAdminByUsername.checkPassword(password);
     if (!checkPassword)
-        return res.status(500).send("Tài khoản hoặc mật khẩu không đúng");
+        return res.json({ result: false, errMgs: "Tài khoản hoặc mật khẩu không đúng" });
     jwt.sign({ foo: getDataAdminByUsername },
         process.env.SECRET, { expiresIn: "1h" },
 
@@ -20,7 +20,7 @@ let loginAmin = async(req, res) => {
             if (err) {
                 console.log(err);
 
-                return res.status(500).send("Mã hoá tài khoản thất bại, lỗi hệ thống!");
+                return res.json({ result: false, errMgs: "Mã hóa thất bại lỗi hệ thống" });
             }
 
             return res.json({ result: true, data: data });
@@ -38,11 +38,12 @@ let checkToken = (req, res, next) => {
 
     if (token) {
         jwt.verify(token, process.env.SECRET, (err, decode) => {
-            if (err) return res.status(500).send("Token Của Bạn Không Hợp Lệ");
+            if (err) return res.json({ result: false, errMgs: "Token không hợp lệ" });
+
             next();
         });
     } else {
-        return res.status(500).send("Token không tồn tại");
+        return res.json({ result: false, errMgs: "Token không tồn tại!" });
     }
 };
 module.exports = {

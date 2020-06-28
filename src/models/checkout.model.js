@@ -21,7 +21,6 @@ checkoutSchema.statics = {
     },
     getDataCartById(id) {
         return this.findById(id).exec();
-
     },
     editDataCart(id, item) {
         return this.findByIdAndUpdate(id, item).exec();

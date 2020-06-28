@@ -47,9 +47,9 @@ let createProduct = (req, res) => {
                 idCate,
             };
             let dataProduct = await product.createProduct(item);
-            res.json({ result: true, dataProduct: dataProduct });
+            res.json({ result: true, data: createItem });
         } catch (error) {
-            res.status(400).send(error);
+            res.json({ result: false, msgError: error });
         }
     });
 };

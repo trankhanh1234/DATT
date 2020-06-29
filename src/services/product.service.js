@@ -1,5 +1,5 @@
 import productModel from "./../models/product.model";
-const LIMIT_DATA_PRODUCT = 1000;
+const LIMIT_DATA_PRODUCT = 500;
 let getDataProduct = (page) => {
     return new Promise(async(resolve, reject) => {
         let start = (page - 1) * LIMIT_DATA_PRODUCT;

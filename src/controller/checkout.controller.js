@@ -52,6 +52,7 @@ let getDataCartById = async(req, res) => {
     let getDataCartById = await checkout.getDataCartById(idCart)
     res.json({ result: true, data: getDataCartById });
 }
+
 let deleteDataCart = async(req, res) => {
     let { idCart } = req.params;
     let deleteDataCart = await checkout.deleteDataCart(idCart)
